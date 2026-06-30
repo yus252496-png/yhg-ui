@@ -23,22 +23,22 @@ const data: User[] = [
 ]
 
 /* ═══════════════════════════════════════════════════════
-   Table 测试
+   P0 — 渲染 & 基本数据展示
    ═══════════════════════════════════════════════════════ */
 
-describe('Table', () => {
+describe('Table — 渲染', () => {
   it('渲染列标题', () => {
     render(<Table columns={columns} dataSource={data} rowKey="id" />)
-    expect(screen.getByText('姓名')).toBeInTheDocument()
-    expect(screen.getByText('年龄')).toBeInTheDocument()
-    expect(screen.getByText('角色')).toBeInTheDocument()
+    columns.forEach((col) => {
+      expect(screen.getByText(col.title)).toBeInTheDocument()
+    })
   })
 
   it('渲染数据行', () => {
     render(<Table columns={columns} dataSource={data} rowKey="id" />)
-    expect(screen.getByText('张三')).toBeInTheDocument()
-    expect(screen.getByText('李四')).toBeInTheDocument()
-    expect(screen.getByText('王五')).toBeInTheDocument()
+    data.forEach((record) => {
+      expect(screen.getByText(record.name)).toBeInTheDocument()
+    })
   })
 
   it('dataIndex 从数据中取值', () => {
@@ -54,46 +54,127 @@ describe('Table', () => {
     render(<Table columns={cols} dataSource={data} rowKey="id" />)
     expect(screen.getByText('★ 张三')).toBeInTheDocument()
   })
+})
 
-  it('排序切换 asc → desc → none', () => {
+/* ═══════════════════════════════════════════════════════
+   P0 — 排序：asc → desc → none 三轮、数字排序、不可排序列
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — 排序', () => {
+  it('asc → desc → none 三轮切换，每次结果正确', () => {
     render(<Table columns={columns} dataSource={[...data]} rowKey="id" />)
     const nameHeader = screen.getByText('姓名')
 
-    // 第一次点击 → asc
+    // localeCompare 在中文环境下按拼音排序：李(lǐ) → 王(wáng) → 张(zhāng)
+    // 第一次点击 → asc（李 → 王 → 张）
     fireEvent.click(nameHeader)
-    const rows = screen.getAllByRole('row')
-    // 第一行数据应为"王五"（42岁，但按姓名 asc：王 > 张 > 李）
-    // 这里按姓名排序：王五 → 张三 → 李四（拼音）
+    let rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('李四')
+    expect(rows[3].textContent).toContain('张三')
 
-    // 第二次点击 → desc
+    // 第二次点击 → desc（张 → 王 → 李）
     fireEvent.click(nameHeader)
-    // 第三次点击 → none（恢复原始顺序）
+    rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('张三')
+    expect(rows[3].textContent).toContain('李四')
+
+    // 第三次点击 → none，恢复原始顺序（张 → 李 → 王）
     fireEvent.click(nameHeader)
+    rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('张三')
+    expect(rows[3].textContent).toContain('王五')
   })
 
-  it('loading 显示遮罩', () => {
+  it('数字字段排序升序', () => {
+    render(<Table columns={columns} dataSource={[...data]} rowKey="id" />)
+    fireEvent.click(screen.getByText('年龄'))
+    const rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('28')
+    expect(rows[3].textContent).toContain('42')
+  })
+
+  it('不可排序的列点击不改变顺序', () => {
+    render(<Table columns={columns} dataSource={[...data]} rowKey="id" />)
+    fireEvent.click(screen.getByText('角色'))
+    const rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('张三')
+    expect(rows[3].textContent).toContain('王五')
+  })
+})
+
+/* ═══════════════════════════════════════════════════════
+   P1 — 排序进阶：自定义 sorter、切换排序列
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — 排序进阶', () => {
+  it('自定义 sorter 函数覆盖默认排序', () => {
+    const cols: Column<User>[] = [
+      {
+        key: 'age',
+        title: '年龄',
+        dataIndex: 'age',
+        sortable: true,
+        sorter: (a, b) => b.age - a.age, // 降序排列
+      },
+    ]
+    render(<Table columns={cols} dataSource={[...data]} rowKey="id" />)
+    fireEvent.click(screen.getByText('年龄'))
+    const rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('42')
+    expect(rows[3].textContent).toContain('28')
+  })
+
+  it('切换排序列时旧列重置、新列升序', () => {
+    render(<Table columns={columns} dataSource={[...data]} rowKey="id" />)
+    fireEvent.click(screen.getByText('年龄')) // age asc: 张(28) → 李(35) → 王(42)
+    fireEvent.click(screen.getByText('姓名')) // 切换到 name asc: 李 → 王 → 张（拼音）
+    const rows = screen.getAllByRole('row')
+    expect(rows[1].textContent).toContain('李四')
+  })
+})
+
+/* ═══════════════════════════════════════════════════════
+   P0 — Loading 状态
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — loading', () => {
+  it('显示遮罩和文案，不渲染数据行', () => {
     render(<Table columns={columns} dataSource={data} rowKey="id" loading />)
     expect(screen.getByText('加载中...')).toBeInTheDocument()
+    expect(screen.queryByText('张三')).toBeNull()
   })
+})
 
-  it('空数据显示 emptyText', () => {
+/* ═══════════════════════════════════════════════════════
+   P0 — 空数据状态
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — 空数据', () => {
+  it('显示默认空文案', () => {
     render(<Table columns={columns} dataSource={[]} rowKey="id" />)
     expect(screen.getByText('暂无数据')).toBeInTheDocument()
   })
 
-  it('自定义空数据文案', () => {
+  it('支持自定义空数据文案', () => {
     render(<Table columns={columns} dataSource={[]} rowKey="id" emptyText="没有找到数据" />)
     expect(screen.getByText('没有找到数据')).toBeInTheDocument()
   })
+})
 
-  it('分页器切换页码触发 onChange', () => {
+/* ═══════════════════════════════════════════════════════
+   P0 — 分页：页码切换
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — 分页', () => {
+  const manyData = Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    name: `用户${i + 1}`,
+    age: 20 + i,
+    role: '成员',
+  }))
+
+  it('切换页码触发 onChange', () => {
     const onChange = vi.fn()
-    const manyData = Array.from({ length: 20 }, (_, i) => ({
-      id: i + 1,
-      name: `用户${i + 1}`,
-      age: 20 + i,
-      role: '成员',
-    }))
     render(
       <Table
         columns={columns}
@@ -102,13 +183,103 @@ describe('Table', () => {
         pagination={{ pageSize: 5, current: 1, onChange }}
       />,
     )
-    // 点击第二页
-    const page2 = screen.getByText('2')
-    fireEvent.click(page2)
+    fireEvent.click(screen.getByText('2'))
     expect(onChange).toHaveBeenCalledWith(2, 5)
   })
+})
 
-  it('行点击（onRow.onClick）', () => {
+/* ═══════════════════════════════════════════════════════
+   P1 — 分页进阶：prev/next 按钮、首尾页禁用、不足一页隐藏
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — 分页进阶', () => {
+  const manyData = Array.from({ length: 20 }, (_, i) => ({
+    id: i + 1,
+    name: `用户${i + 1}`,
+    age: 20 + i,
+    role: '成员',
+  }))
+
+  it('上一页和下一页按钮触发正确的 onChange', () => {
+    const onChange = vi.fn()
+    render(
+      <Table
+        columns={columns}
+        dataSource={manyData}
+        rowKey="id"
+        pagination={{ pageSize: 5, current: 2, onChange }}
+      />,
+    )
+
+    fireEvent.click(screen.getByLabelText('上一页'))
+    expect(onChange).toHaveBeenCalledWith(1, 5)
+
+    fireEvent.click(screen.getByLabelText('下一页'))
+    expect(onChange).toHaveBeenCalledWith(3, 5)
+  })
+
+  it('第一页时上一页按钮 disabled', () => {
+    render(
+      <Table
+        columns={columns}
+        dataSource={manyData}
+        rowKey="id"
+        pagination={{ pageSize: 5, current: 1 }}
+      />,
+    )
+    expect(screen.getByLabelText('上一页')).toBeDisabled()
+  })
+
+  it('最后一页时下一页按钮 disabled', () => {
+    render(
+      <Table
+        columns={columns}
+        dataSource={manyData}
+        rowKey="id"
+        pagination={{ pageSize: 5, current: 4 }}
+      />,
+    )
+    expect(screen.getByLabelText('下一页')).toBeDisabled()
+  })
+
+  it('数据不足一页时不显示分页器', () => {
+    render(
+      <Table
+        columns={columns}
+        dataSource={data}
+        rowKey="id"
+        pagination={{ pageSize: 10, current: 1 }}
+      />,
+    )
+    expect(screen.queryByLabelText('上一页')).toBeNull()
+    expect(screen.queryByLabelText('下一页')).toBeNull()
+  })
+})
+
+/* ═══════════════════════════════════════════════════════
+   P1 — render 进阶：参数验证
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — render 进阶', () => {
+  it('render 接收正确的参数 (value, record, index)', () => {
+    const renderFn = vi.fn(() => '')
+    const cols: Column<User>[] = [
+      { key: 'name', title: '姓名', dataIndex: 'name', render: renderFn },
+    ]
+    render(<Table columns={cols} dataSource={data} rowKey="id" />)
+    expect(renderFn).toHaveBeenCalledTimes(3)
+    expect(renderFn).toHaveBeenNthCalledWith(1, '张三', data[0], 0)
+    expect(renderFn).toHaveBeenNthCalledWith(2, '李四', data[1], 1)
+    expect(renderFn).toHaveBeenNthCalledWith(3, '王五', data[2], 2)
+  })
+})
+
+/* ═══════════════════════════════════════════════════════
+   P1 — 行事件 (onRow)
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — onRow', () => {
+  it('行点击触发 onRow.onClick', () => {
     const onRowClick = vi.fn()
     render(
       <Table
@@ -118,13 +289,33 @@ describe('Table', () => {
         onRow={() => ({ onClick: onRowClick })}
       />,
     )
-    // 点击第一行
     fireEvent.click(screen.getByText('张三').closest('td')!)
     expect(onRowClick).toHaveBeenCalled()
   })
 
-  it('传递 className', () => {
-    render(<Table columns={columns} dataSource={data} rowKey="id" className="my-table" />)
-    expect(screen.getByText('姓名').closest('div')!.parentElement).toHaveClass('my-table')
+  it('不传 onRow 不报错', () => {
+    expect(() =>
+      render(<Table columns={columns} dataSource={data} rowKey="id" />),
+    ).not.toThrow()
+  })
+})
+
+/* ═══════════════════════════════════════════════════════
+   P1 — Props 透传：className、style
+   ═══════════════════════════════════════════════════════ */
+
+describe('Table — Props 透传', () => {
+  it('className 透传到根元素', () => {
+    const { container } = render(
+      <Table columns={columns} dataSource={data} rowKey="id" className="my-table" />,
+    )
+    expect(container.firstElementChild).toHaveClass('my-table')
+  })
+
+  it('style 透传到根元素', () => {
+    const { container } = render(
+      <Table columns={columns} dataSource={data} rowKey="id" style={{ width: '500px' }} />,
+    )
+    expect(container.firstElementChild).toHaveStyle({ width: '500px' })
   })
 })
