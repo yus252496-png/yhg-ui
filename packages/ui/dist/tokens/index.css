@@ -1,0 +1,7 @@
+/* ═══════════════════════════════════════════════════════
+   @kuka-fe/ui Design Tokens — 聚合入口
+   ═══════════════════════════════════════════════════════ */
+
+@import './colors.css';
+@import './typography.css';
+@import './spacing.css';

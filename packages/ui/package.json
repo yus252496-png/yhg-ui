@@ -15,7 +15,8 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./tokens/*": "./dist/tokens/*"
+    "./tokens/*": "./dist/tokens/*",
+    "./dist/*": "./dist/*"
   },
   "scripts": {
     "dev": "vite build --watch",

@@ -4,3 +4,6 @@ dist
 .storybook/dist
 storybook-static
 .vite
+
+# 但 packages/ui/dist 需要提交，供同事从 git 安装
+!packages/ui/dist/

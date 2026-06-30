@@ -1,0 +1,25 @@
+/* ═══════════════════════════════════════════════════════
+   @kuka-fe/ui Design Tokens — 间距 / 圆角 / 阴影
+   ═══════════════════════════════════════════════════════ */
+
+:root {
+  /* 圆角 */
+  --kuka-radius-sm:  4px;
+  --kuka-radius-md:  6px;
+  --kuka-radius-lg:  12px;
+
+  /* 间距 */
+  --kuka-spacing-xs: 4px;
+  --kuka-spacing-sm: 8px;
+  --kuka-spacing-md: 12px;
+  --kuka-spacing-lg: 16px;
+  --kuka-spacing-xl: 24px;
+
+  /* 阴影 */
+  --kuka-shadow-sm:  0 2px 8px rgba(0, 0, 0, 0.3);
+  --kuka-shadow-md:  0 4px 16px rgba(0, 0, 0, 0.4);
+  --kuka-shadow-lg:  0 8px 32px rgba(0, 0, 0, 0.5);
+
+  /* 过渡 */
+  --kuka-transition: 0.2s ease;
+}
