@@ -218,8 +218,229 @@ function p({ columns: e, dataSource: i, rowKey: c, loading: l = !1, pagination: 
 	});
 }
 //#endregion
+//#region src/Form/validator.ts
+function m(e, t) {
+	let n = t[e.name], r = e.rules ?? [];
+	if (e.required && (n == null || n === "")) return {
+		name: e.name,
+		message: `${e.label}不能为空`
+	};
+	for (let t of r) {
+		let r = h(t, n, e.label);
+		if (r) return {
+			name: e.name,
+			message: r
+		};
+	}
+	return null;
+}
+function h(e, t, n) {
+	if (e.required && (t == null || t === "")) return e.message || `${n}不能为空`;
+	if (e.min !== void 0 && typeof t == "number" && t < e.min) return e.message || `${n}不能小于${e.min}`;
+	if (e.max !== void 0 && typeof t == "number" && t > e.max) return e.message || `${n}不能大于${e.max}`;
+	if (e.pattern && typeof t == "string" && !e.pattern.test(t)) return e.message || `${n}格式不正确`;
+	if (e.validator && t !== void 0) {
+		let r = e.validator(t);
+		if (typeof r == "boolean" && !r) return e.message || `${n}验证失败`;
+	}
+	return null;
+}
+var g = {
+	form: "_form_1bsiv_5",
+	horizontal: "_horizontal_1bsiv_13",
+	field: "_field_1bsiv_13",
+	label: "_label_1bsiv_20",
+	control: "_control_1bsiv_27",
+	vertical: "_vertical_1bsiv_33",
+	inline: "_inline_1bsiv_48",
+	required: "_required_1bsiv_78",
+	input: "_input_1bsiv_85",
+	inputError: "_inputError_1bsiv_111",
+	textarea: "_textarea_1bsiv_144",
+	switch: "_switch_1bsiv_153",
+	switchInput: "_switchInput_1bsiv_159",
+	switchTrack: "_switchTrack_1bsiv_166",
+	switchThumb: "_switchThumb_1bsiv_179",
+	error: "_error_1bsiv_196",
+	actions: "_actions_1bsiv_205",
+	submitBtn: "_submitBtn_1bsiv_216",
+	resetBtn: "_resetBtn_1bsiv_217"
+};
+//#endregion
+//#region src/Form/FieldRenderer.tsx
+function _({ field: e, value: t, onChange: n, onBlur: r, hasError: s }) {
+	let c = e.name;
+	if (e.component) return /* @__PURE__ */ a(i, { children: e.component });
+	let l = `${g.input} ${s ? g.inputError : ""}`.trim();
+	switch (e.type) {
+		case "text": return /* @__PURE__ */ a("input", {
+			id: c,
+			className: l,
+			type: "text",
+			value: t ?? "",
+			placeholder: e.placeholder,
+			onChange: (e) => n(e.target.value),
+			onBlur: r
+		});
+		case "number": return /* @__PURE__ */ a("input", {
+			id: c,
+			className: l,
+			type: "number",
+			value: t ?? "",
+			placeholder: e.placeholder,
+			onChange: (e) => n(e.target.value === "" ? "" : Number(e.target.value)),
+			onBlur: r
+		});
+		case "select": return /* @__PURE__ */ o("select", {
+			id: c,
+			className: l,
+			value: t ?? "",
+			onChange: (e) => n(e.target.value),
+			onBlur: r,
+			children: [/* @__PURE__ */ a("option", {
+				value: "",
+				disabled: !0,
+				children: e.placeholder ?? "请选择"
+			}), e.options?.map((e) => /* @__PURE__ */ a("option", {
+				value: e.value,
+				children: e.label
+			}, e.value))]
+		});
+		case "switch": {
+			let e = !!t;
+			return /* @__PURE__ */ o("label", {
+				className: g.switch,
+				children: [/* @__PURE__ */ a("input", {
+					id: c,
+					type: "checkbox",
+					checked: e,
+					onChange: (e) => n(e.target.checked),
+					onBlur: r,
+					className: g.switchInput
+				}), /* @__PURE__ */ a("span", {
+					className: g.switchTrack,
+					children: /* @__PURE__ */ a("span", { className: g.switchThumb })
+				})]
+			});
+		}
+		case "textarea": return /* @__PURE__ */ a("textarea", {
+			id: c,
+			className: `${l} ${g.textarea}`,
+			value: t ?? "",
+			placeholder: e.placeholder,
+			onChange: (e) => n(e.target.value),
+			onBlur: r,
+			rows: 3
+		});
+		default: return /* @__PURE__ */ a("input", {
+			id: c,
+			className: l,
+			type: "text",
+			value: t ?? "",
+			onChange: (e) => n(e.target.value),
+			onBlur: r
+		});
+	}
+}
+//#endregion
+//#region src/Form/Form.tsx
+function v({ fields: e, layout: i = "horizontal", initialValues: c, onSubmit: l, onReset: u, submitText: d = "提交", resetText: f = "重置", className: p, style: h }) {
+	let [v, y] = r(c ?? {}), [b, x] = r([]), [S, C] = r(/* @__PURE__ */ new Set()), w = n(() => {
+		let e = /* @__PURE__ */ new Map();
+		for (let t of b) e.set(t.name, t.message);
+		return e;
+	}, [b]), T = t((t, n) => {
+		y((e) => ({
+			...e,
+			[t]: n
+		})), C((r) => (r.has(t) && x((r) => {
+			let i = e.find((e) => e.name === t);
+			if (!i) return r;
+			let a = r.filter((e) => e.name !== t), o = m(i, {
+				...v,
+				[t]: n
+			});
+			return o ? [...a, o] : a;
+		}), r));
+	}, [e, v]), E = t((t) => {
+		C((e) => {
+			if (e.has(t)) return e;
+			let n = new Set(e);
+			return n.add(t), n;
+		});
+		let n = e.find((e) => e.name === t);
+		n && x((e) => {
+			let r = e.filter((e) => e.name !== t), i = m(n, v);
+			return i ? [...r, i] : r;
+		});
+	}, [e, v]), D = t(async () => {
+		let t = [];
+		for (let n of e) {
+			let e = m(n, v);
+			e && t.push(e);
+		}
+		for (let n of e) {
+			let e = n.rules?.find((e) => e.validator);
+			e?.validator && (await e.validator(v[n.name]) || t.push({
+				name: n.name,
+				message: e.message
+			}));
+		}
+		return x(t), C(new Set(e.map((e) => e.name))), t.length === 0;
+	}, [e, v]), O = t(async (e) => {
+		e.preventDefault(), await D() && l?.(v);
+	}, [
+		D,
+		l,
+		v
+	]), k = t(() => {
+		y(c ?? {}), x([]), C(/* @__PURE__ */ new Set()), u?.();
+	}, [c, u]);
+	return /* @__PURE__ */ o("form", {
+		className: s(g.form, g[i], p),
+		style: h,
+		onSubmit: O,
+		onReset: k,
+		noValidate: !0,
+		children: [e.map((e) => /* @__PURE__ */ o("div", {
+			className: s(g.field, e.required && g.isRequired),
+			children: [/* @__PURE__ */ o("label", {
+				className: g.label,
+				htmlFor: e.name,
+				children: [e.label, e.required && /* @__PURE__ */ a("span", {
+					className: g.required,
+					children: "*"
+				})]
+			}), /* @__PURE__ */ o("div", {
+				className: g.control,
+				children: [/* @__PURE__ */ a(_, {
+					field: e,
+					value: v[e.name],
+					onChange: (t) => T(e.name, t),
+					onBlur: () => E(e.name),
+					hasError: S.has(e.name) && w.has(e.name)
+				}), S.has(e.name) && w.has(e.name) && /* @__PURE__ */ a("div", {
+					className: g.error,
+					children: w.get(e.name)
+				})]
+			})]
+		}, e.name)), /* @__PURE__ */ o("div", {
+			className: g.actions,
+			children: [/* @__PURE__ */ a("button", {
+				type: "submit",
+				className: g.submitBtn,
+				children: d
+			}), /* @__PURE__ */ a("button", {
+				type: "reset",
+				className: g.resetBtn,
+				children: f
+			})]
+		})]
+	});
+}
+//#endregion
 //#region src/hooks/useControllable.ts
-function m(e, n, i) {
+function y(e, n, i) {
 	let [a, o] = r(n), s = e !== void 0;
 	return [s ? e : a, t((e) => {
 		s || o(e), i?.(e);
@@ -227,17 +448,17 @@ function m(e, n, i) {
 }
 //#endregion
 //#region src/hooks/useMergeRefs.ts
-function h(...e) {
+function b(...e) {
 	return t((t) => {
 		for (let n of e) n && (typeof n == "function" ? n(t) : "current" in n && (n.current = t));
 	}, e);
 }
 //#endregion
 //#region src/utils/isPromise.ts
-function g(e) {
+function x(e) {
 	return typeof e == "object" && !!e && "then" in e && typeof e.then == "function";
 }
 //#endregion
-export { l as Button, p as Table, s as cn, g as isPromise, m as useControllable, h as useMergeRefs };
+export { l as Button, v as Form, p as Table, s as cn, x as isPromise, y as useControllable, b as useMergeRefs };
 
 //# sourceMappingURL=index.js.map

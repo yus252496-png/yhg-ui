@@ -1,0 +1,246 @@
+/* ═══════════════════════════════════════════════════════
+   Form 组件样式
+   ═══════════════════════════════════════════════════════ */
+
+.form {
+  font-family: var(--kuka-font-family-sans);
+  font-size: var(--kuka-font-size-md);
+  color: var(--kuka-text-primary);
+}
+
+/* ── 布局：horizontal（默认） ── */
+
+.horizontal .field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--kuka-spacing-md);
+  margin-bottom: var(--kuka-spacing-lg);
+}
+
+.horizontal .label {
+  width: 120px;
+  flex-shrink: 0;
+  padding-top: 8px;
+  text-align: right;
+}
+
+.horizontal .control {
+  flex: 1;
+}
+
+/* ── 布局：vertical ── */
+
+.vertical .field {
+  margin-bottom: var(--kuka-spacing-lg);
+}
+
+.vertical .label {
+  display: block;
+  margin-bottom: var(--kuka-spacing-xs);
+}
+
+.vertical .control {
+  width: 100%;
+}
+
+/* ── 布局：inline ── */
+
+.inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kuka-spacing-md);
+  align-items: flex-end;
+}
+
+.inline .field {
+  display: flex;
+  align-items: center;
+  gap: var(--kuka-spacing-sm);
+}
+
+.inline .label {
+  white-space: nowrap;
+}
+
+.inline .control {
+  flex: 1;
+  min-width: 140px;
+}
+
+/* ── 标签 ── */
+
+.label {
+  font-size: var(--kuka-font-size-sm);
+  color: var(--kuka-text-secondary);
+  font-weight: var(--kuka-font-weight-medium);
+}
+
+.required {
+  color: var(--kuka-color-danger);
+  margin-left: 2px;
+}
+
+/* ── 输入控件 ── */
+
+.input {
+  width: 100%;
+  height: 34px;
+  padding: 0 var(--kuka-spacing-md);
+  background: var(--kuka-bg-input);
+  border: 1px solid var(--kuka-border-color);
+  border-radius: var(--kuka-radius-md);
+  color: var(--kuka-text-primary);
+  font-family: var(--kuka-font-family-sans);
+  font-size: var(--kuka-font-size-md);
+  outline: none;
+  transition:
+    border-color var(--kuka-transition),
+    box-shadow var(--kuka-transition);
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: var(--kuka-text-disabled);
+}
+
+.input:focus {
+  border-color: var(--kuka-color-primary);
+  box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.15);
+}
+
+.inputError {
+  border-color: var(--kuka-color-danger);
+}
+
+.inputError:focus {
+  border-color: var(--kuka-color-danger);
+  box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.15);
+}
+
+/* ── select ── */
+
+.input[type="number"] {
+  /* 隐藏 spinner */
+  -moz-appearance: textfield;
+}
+
+.input[type="number"]::-webkit-inner-spin-button,
+.input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+select.input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='%23667'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+/* ── textarea ── */
+
+.textarea {
+  height: auto;
+  padding: var(--kuka-spacing-sm) var(--kuka-spacing-md);
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ── switch ── */
+
+.switch {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.switchInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switchTrack {
+  position: relative;
+  width: 40px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 11px;
+  transition: background var(--kuka-transition);
+}
+
+.switchInput:checked + .switchTrack {
+  background: var(--kuka-color-primary);
+}
+
+.switchThumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform var(--kuka-transition);
+}
+
+.switchInput:checked + .switchTrack .switchThumb {
+  transform: translateX(18px);
+}
+
+/* ── 错误信息 ── */
+
+.error {
+  margin-top: 4px;
+  font-size: var(--kuka-font-size-xs);
+  color: var(--kuka-color-danger);
+  line-height: 1.4;
+}
+
+/* ── 操作按钮 ── */
+
+.actions {
+  display: flex;
+  gap: var(--kuka-spacing-sm);
+  margin-top: var(--kuka-spacing-xl);
+}
+
+.inline .actions {
+  margin-top: 0;
+  align-items: flex-end;
+}
+
+.submitBtn,
+.resetBtn {
+  height: 34px;
+  padding: 0 var(--kuka-spacing-xl);
+  border: none;
+  border-radius: var(--kuka-radius-md);
+  font-family: var(--kuka-font-family-sans);
+  font-size: var(--kuka-font-size-md);
+  cursor: pointer;
+  transition: all var(--kuka-transition);
+}
+
+.submitBtn {
+  background: var(--kuka-color-primary);
+  color: #000;
+  font-weight: var(--kuka-font-weight-medium);
+}
+
+.submitBtn:hover {
+  background: var(--kuka-color-primary-hover);
+}
+
+.resetBtn {
+  background: transparent;
+  color: var(--kuka-text-secondary);
+  border: 1px solid var(--kuka-border-color);
+}
+
+.resetBtn:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
