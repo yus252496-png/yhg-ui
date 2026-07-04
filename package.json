@@ -2,6 +2,22 @@
   "name": "kuka-fe-ui",
   "private": true,
   "packageManager": "pnpm@10.34.4",
+  "version": "0.1.2",
+  "description": "库卡工业级 React 组件库（Button/Table/Form/Chat）",
+  "main": "./packages/ui/dist/index.cjs",
+  "module": "./packages/ui/dist/index.js",
+  "types": "./packages/ui/dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./packages/ui/dist/index.d.ts",
+      "import": "./packages/ui/dist/index.js",
+      "require": "./packages/ui/dist/index.cjs"
+    },
+    "./dist/*": "./packages/ui/dist/*"
+  },
+  "files": [
+    "packages/ui/dist/"
+  ],
   "scripts": {
     "build": "pnpm --filter @kuka-fe/ui build",
     "test": "pnpm --filter @kuka-fe/ui test",
