@@ -1,10 +1,10 @@
-import { forwardRef as e, useCallback as t, useMemo as n, useState as r } from "react";
-import { Fragment as i, jsx as a, jsxs as o } from "react/jsx-runtime";
+import { forwardRef as e, useCallback as t, useEffect as n, useMemo as r, useRef as i, useState as a } from "react";
+import { Fragment as o, jsx as s, jsxs as c } from "react/jsx-runtime";
 //#region src/utils/cn.ts
-function s(...e) {
+function l(...e) {
 	return e.filter(Boolean).join(" ");
 }
-var c = {
+var u = {
 	button: "_button_1qvw6_8",
 	loading: "_loading_1qvw6_37",
 	block: "_block_1qvw6_44",
@@ -20,10 +20,10 @@ var c = {
 	icon: "_icon_1qvw6_154",
 	spinner: "_spinner_1qvw6_162",
 	spin: "_spin_1qvw6_162"
-}, l = e(function({ variant: e = "primary", size: t = "md", disabled: n = !1, loading: r = !1, block: i = !1, icon: l, children: u, className: d, onClick: f, ...p }, m) {
-	return /* @__PURE__ */ o("button", {
+}, d = e(function({ variant: e = "primary", size: t = "md", disabled: n = !1, loading: r = !1, block: i = !1, icon: a, children: o, className: d, onClick: f, ...p }, m) {
+	return /* @__PURE__ */ c("button", {
 		ref: m,
-		className: s(c.button, c[e], c[t], i && c.block, r && c.loading, d),
+		className: l(u.button, u[e], u[t], i && u.block, r && u.loading, d),
 		disabled: n || r,
 		"aria-disabled": n || r,
 		"aria-busy": r,
@@ -31,18 +31,18 @@ var c = {
 			n || r || f?.(e);
 		},
 		...p,
-		children: [r ? /* @__PURE__ */ a("span", {
-			className: c.spinner,
+		children: [r ? /* @__PURE__ */ s("span", {
+			className: u.spinner,
 			"aria-hidden": "true"
-		}) : l && /* @__PURE__ */ a("span", {
-			className: c.icon,
-			children: l
-		}), u && /* @__PURE__ */ a("span", {
-			className: c.content,
-			children: u
+		}) : a && /* @__PURE__ */ s("span", {
+			className: u.icon,
+			children: a
+		}), o && /* @__PURE__ */ s("span", {
+			className: u.content,
+			children: o
 		})]
 	});
-}), u = {
+}), f = {
 	wrapper: "_wrapper_i6tic_6",
 	tableContainer: "_tableContainer_i6tic_14",
 	table: "_table_i6tic_14",
@@ -74,55 +74,55 @@ var c = {
 };
 //#endregion
 //#region src/Table/Pagination.tsx
-function d({ current: e, pageSize: t, total: n, onChange: r }) {
-	let c = Math.ceil(n / t);
-	if (c <= 1) return null;
-	let l = [], d = Math.max(1, e - 2), f = Math.min(c, e + 2);
-	for (let e = d; e <= f; e++) l.push(e);
-	return /* @__PURE__ */ o("div", {
-		className: u.pagination,
+function p({ current: e, pageSize: t, total: n, onChange: r }) {
+	let i = Math.ceil(n / t);
+	if (i <= 1) return null;
+	let a = [], u = Math.max(1, e - 2), d = Math.min(i, e + 2);
+	for (let e = u; e <= d; e++) a.push(e);
+	return /* @__PURE__ */ c("div", {
+		className: f.pagination,
 		children: [
-			/* @__PURE__ */ a("button", {
-				className: s(u.pageBtn, e <= 1 && u.disabled),
+			/* @__PURE__ */ s("button", {
+				className: l(f.pageBtn, e <= 1 && f.disabled),
 				disabled: e <= 1,
 				onClick: () => r?.(e - 1, t),
 				"aria-label": "上一页",
 				children: "‹"
 			}),
-			d > 1 && /* @__PURE__ */ o(i, { children: [/* @__PURE__ */ a("button", {
-				className: u.pageBtn,
+			u > 1 && /* @__PURE__ */ c(o, { children: [/* @__PURE__ */ s("button", {
+				className: f.pageBtn,
 				onClick: () => r?.(1, t),
 				children: "1"
-			}), d > 2 && /* @__PURE__ */ a("span", {
-				className: u.ellipsis,
+			}), u > 2 && /* @__PURE__ */ s("span", {
+				className: f.ellipsis,
 				children: "…"
 			})] }),
-			l.map((n) => /* @__PURE__ */ a("button", {
-				className: s(u.pageBtn, n === e && u.active),
+			a.map((n) => /* @__PURE__ */ s("button", {
+				className: l(f.pageBtn, n === e && f.active),
 				onClick: () => r?.(n, t),
 				children: n
 			}, n)),
-			f < c && /* @__PURE__ */ o(i, { children: [f < c - 1 && /* @__PURE__ */ a("span", {
-				className: u.ellipsis,
+			d < i && /* @__PURE__ */ c(o, { children: [d < i - 1 && /* @__PURE__ */ s("span", {
+				className: f.ellipsis,
 				children: "…"
-			}), /* @__PURE__ */ a("button", {
-				className: u.pageBtn,
-				onClick: () => r?.(c, t),
-				children: c
+			}), /* @__PURE__ */ s("button", {
+				className: f.pageBtn,
+				onClick: () => r?.(i, t),
+				children: i
 			})] }),
-			/* @__PURE__ */ a("button", {
-				className: s(u.pageBtn, e >= c && u.disabled),
-				disabled: e >= c,
+			/* @__PURE__ */ s("button", {
+				className: l(f.pageBtn, e >= i && f.disabled),
+				disabled: e >= i,
 				onClick: () => r?.(e + 1, t),
 				"aria-label": "下一页",
 				children: "›"
 			}),
-			/* @__PURE__ */ o("span", {
-				className: u.pageInfo,
+			/* @__PURE__ */ c("span", {
+				className: f.pageInfo,
 				children: [
 					e,
 					"/",
-					c
+					i
 				]
 			})
 		]
@@ -130,103 +130,103 @@ function d({ current: e, pageSize: t, total: n, onChange: r }) {
 }
 //#endregion
 //#region src/Table/Table.tsx
-function f(e, t) {
+function m(e, t) {
 	return typeof t == "function" ? t(e) : String(e[t]);
 }
-function p({ columns: e, dataSource: i, rowKey: c, loading: l = !1, pagination: p, emptyText: m = "暂无数据", onRow: h, className: g, style: _ }) {
-	let [v, y] = r(null), [b, x] = r(null), S = t((e) => {
+function h({ columns: e, dataSource: n, rowKey: i, loading: o = !1, pagination: u, emptyText: d = "暂无数据", onRow: h, className: g, style: _ }) {
+	let [v, y] = a(null), [b, x] = a(null), S = t((e) => {
 		e.sortable && (v === e.key ? x((e) => e === "asc" ? "desc" : e === "desc" ? null : "asc") : (y(e.key), x("asc")));
-	}, [v]), C = n(() => {
-		if (!v || !b) return i;
+	}, [v]), C = r(() => {
+		if (!v || !b) return n;
 		let t = e.find((e) => e.key === v);
-		return t ? [...i].sort((e, n) => {
+		return t ? [...n].sort((e, n) => {
 			let r = t.sorter;
 			if (r) return b === "asc" ? r(e, n) : r(n, e);
 			let i = t.dataIndex ? e[t.dataIndex] : void 0, a = t.dataIndex ? n[t.dataIndex] : void 0;
 			return i == null ? 1 : a == null ? -1 : typeof i == "number" && typeof a == "number" ? b === "asc" ? i - a : a - i : b === "asc" ? String(i).localeCompare(String(a)) : String(a).localeCompare(String(i));
-		}) : i;
+		}) : n;
 	}, [
-		i,
+		n,
 		v,
 		b,
 		e
-	]), w = p?.pageSize ?? 0, T = p?.current ?? 1, E = w > 0 ? C.slice((T - 1) * w, T * w) : C, D = p?.total ?? C.length, O = (e) => {
+	]), w = u?.pageSize ?? 0, T = u?.current ?? 1, E = w > 0 ? C.slice((T - 1) * w, T * w) : C, D = u?.total ?? C.length, O = (e) => {
 		if (!e.sortable) return null;
 		let t = v === e.key;
-		return /* @__PURE__ */ o("span", {
-			className: u.sortIcons,
-			children: [/* @__PURE__ */ a("span", {
-				className: s(u.sortArrow, u.sortUp, t && b === "asc" && u.sortActive),
+		return /* @__PURE__ */ c("span", {
+			className: f.sortIcons,
+			children: [/* @__PURE__ */ s("span", {
+				className: l(f.sortArrow, f.sortUp, t && b === "asc" && f.sortActive),
 				children: "▲"
-			}), /* @__PURE__ */ a("span", {
-				className: s(u.sortArrow, u.sortDown, t && b === "desc" && u.sortActive),
+			}), /* @__PURE__ */ s("span", {
+				className: l(f.sortArrow, f.sortDown, t && b === "desc" && f.sortActive),
 				children: "▼"
 			})]
 		});
 	};
-	return /* @__PURE__ */ o("div", {
-		className: s(u.wrapper, g),
+	return /* @__PURE__ */ c("div", {
+		className: l(f.wrapper, g),
 		style: _,
-		children: [/* @__PURE__ */ a("div", {
-			className: u.tableContainer,
-			children: /* @__PURE__ */ o("table", {
-				className: u.table,
-				children: [/* @__PURE__ */ a("thead", { children: /* @__PURE__ */ a("tr", { children: e.map((e) => /* @__PURE__ */ a("th", {
-					className: s(u.th, e.sortable && u.sortable, e.align && u[`align${e.align.charAt(0).toUpperCase() + e.align.slice(1)}`], e.fixed === "left" && u.fixedLeft, e.fixed === "right" && u.fixedRight),
+		children: [/* @__PURE__ */ s("div", {
+			className: f.tableContainer,
+			children: /* @__PURE__ */ c("table", {
+				className: f.table,
+				children: [/* @__PURE__ */ s("thead", { children: /* @__PURE__ */ s("tr", { children: e.map((e) => /* @__PURE__ */ s("th", {
+					className: l(f.th, e.sortable && f.sortable, e.align && f[`align${e.align.charAt(0).toUpperCase() + e.align.slice(1)}`], e.fixed === "left" && f.fixedLeft, e.fixed === "right" && f.fixedRight),
 					style: { width: e.width },
 					onClick: () => S(e),
 					"aria-sort": v === e.key ? b === "asc" ? "ascending" : b === "desc" ? "descending" : "none" : void 0,
-					children: /* @__PURE__ */ o("span", {
-						className: u.thContent,
+					children: /* @__PURE__ */ c("span", {
+						className: f.thContent,
 						children: [e.title, O(e)]
 					})
-				}, e.key)) }) }), /* @__PURE__ */ a("tbody", { children: l ? /* @__PURE__ */ a("tr", { children: /* @__PURE__ */ a("td", {
+				}, e.key)) }) }), /* @__PURE__ */ s("tbody", { children: o ? /* @__PURE__ */ s("tr", { children: /* @__PURE__ */ s("td", {
 					colSpan: e.length,
-					className: u.loadingCell,
-					children: /* @__PURE__ */ o("div", {
-						className: u.loadingOverlay,
-						children: [/* @__PURE__ */ a("span", { className: u.spinner }), /* @__PURE__ */ a("span", { children: "加载中..." })]
+					className: f.loadingCell,
+					children: /* @__PURE__ */ c("div", {
+						className: f.loadingOverlay,
+						children: [/* @__PURE__ */ s("span", { className: f.spinner }), /* @__PURE__ */ s("span", { children: "加载中..." })]
 					})
-				}) }) : E.length === 0 ? /* @__PURE__ */ a("tr", { children: /* @__PURE__ */ a("td", {
+				}) }) : E.length === 0 ? /* @__PURE__ */ s("tr", { children: /* @__PURE__ */ s("td", {
 					colSpan: e.length,
-					className: u.emptyCell,
-					children: m
+					className: f.emptyCell,
+					children: d
 				}) }) : E.map((t, n) => {
-					let r = f(t, c), i = h?.(t);
-					return /* @__PURE__ */ a("tr", {
-						className: s(u.tr, i?.onClick && u.clickable),
-						onClick: i?.onClick,
+					let r = m(t, i), a = h?.(t);
+					return /* @__PURE__ */ s("tr", {
+						className: l(f.tr, a?.onClick && f.clickable),
+						onClick: a?.onClick,
 						children: e.map((e) => {
 							let r = e.dataIndex ? t[e.dataIndex] : void 0, i = e.render ? e.render(r, t, n) : r;
-							return /* @__PURE__ */ a("td", {
-								className: s(u.td, e.align && u[`align${e.align.charAt(0).toUpperCase() + e.align.slice(1)}`], e.fixed === "left" && u.fixedLeft, e.fixed === "right" && u.fixedRight),
+							return /* @__PURE__ */ s("td", {
+								className: l(f.td, e.align && f[`align${e.align.charAt(0).toUpperCase() + e.align.slice(1)}`], e.fixed === "left" && f.fixedLeft, e.fixed === "right" && f.fixedRight),
 								children: i ?? "—"
 							}, e.key);
 						})
 					}, r);
 				}) })]
 			})
-		}), p && !l && D > 0 && /* @__PURE__ */ a("div", {
-			className: u.paginationBar,
-			children: /* @__PURE__ */ a(d, {
+		}), u && !o && D > 0 && /* @__PURE__ */ s("div", {
+			className: f.paginationBar,
+			children: /* @__PURE__ */ s(p, {
 				current: T,
 				pageSize: w,
 				total: D,
-				onChange: p.onChange
+				onChange: u.onChange
 			})
 		})]
 	});
 }
 //#endregion
 //#region src/Form/validator.ts
-function m(e, t) {
+function g(e, t) {
 	let n = t[e.name], r = e.rules ?? [];
 	if (e.required && (n == null || n === "")) return {
 		name: e.name,
 		message: `${e.label}不能为空`
 	};
 	for (let t of r) {
-		let r = h(t, n, e.label);
+		let r = _(t, n, e.label);
 		if (r) return {
 			name: e.name,
 			message: r
@@ -234,7 +234,7 @@ function m(e, t) {
 	}
 	return null;
 }
-function h(e, t, n) {
+function _(e, t, n) {
 	if (e.required && (t == null || t === "")) return e.message || `${n}不能为空`;
 	if (e.min !== void 0 && typeof t == "number" && t < e.min) return e.message || `${n}不能小于${e.min}`;
 	if (e.max !== void 0 && typeof t == "number" && t > e.max) return e.message || `${n}不能大于${e.max}`;
@@ -245,7 +245,7 @@ function h(e, t, n) {
 	}
 	return null;
 }
-var g = {
+var v = {
 	form: "_form_1bsiv_5",
 	horizontal: "_horizontal_1bsiv_13",
 	field: "_field_1bsiv_13",
@@ -268,13 +268,13 @@ var g = {
 };
 //#endregion
 //#region src/Form/FieldRenderer.tsx
-function _({ field: e, value: t, onChange: n, onBlur: r, hasError: s }) {
-	let c = e.name;
-	if (e.component) return /* @__PURE__ */ a(i, { children: e.component });
-	let l = `${g.input} ${s ? g.inputError : ""}`.trim();
+function y({ field: e, value: t, onChange: n, onBlur: r, hasError: i }) {
+	let a = e.name;
+	if (e.component) return /* @__PURE__ */ s(o, { children: e.component });
+	let l = `${v.input} ${i ? v.inputError : ""}`.trim();
 	switch (e.type) {
-		case "text": return /* @__PURE__ */ a("input", {
-			id: c,
+		case "text": return /* @__PURE__ */ s("input", {
+			id: a,
 			className: l,
 			type: "text",
 			value: t ?? "",
@@ -282,8 +282,8 @@ function _({ field: e, value: t, onChange: n, onBlur: r, hasError: s }) {
 			onChange: (e) => n(e.target.value),
 			onBlur: r
 		});
-		case "number": return /* @__PURE__ */ a("input", {
-			id: c,
+		case "number": return /* @__PURE__ */ s("input", {
+			id: a,
 			className: l,
 			type: "number",
 			value: t ?? "",
@@ -291,49 +291,49 @@ function _({ field: e, value: t, onChange: n, onBlur: r, hasError: s }) {
 			onChange: (e) => n(e.target.value === "" ? "" : Number(e.target.value)),
 			onBlur: r
 		});
-		case "select": return /* @__PURE__ */ o("select", {
-			id: c,
+		case "select": return /* @__PURE__ */ c("select", {
+			id: a,
 			className: l,
 			value: t ?? "",
 			onChange: (e) => n(e.target.value),
 			onBlur: r,
-			children: [/* @__PURE__ */ a("option", {
+			children: [/* @__PURE__ */ s("option", {
 				value: "",
 				disabled: !0,
 				children: e.placeholder ?? "请选择"
-			}), e.options?.map((e) => /* @__PURE__ */ a("option", {
+			}), e.options?.map((e) => /* @__PURE__ */ s("option", {
 				value: e.value,
 				children: e.label
 			}, e.value))]
 		});
 		case "switch": {
 			let e = !!t;
-			return /* @__PURE__ */ o("label", {
-				className: g.switch,
-				children: [/* @__PURE__ */ a("input", {
-					id: c,
+			return /* @__PURE__ */ c("label", {
+				className: v.switch,
+				children: [/* @__PURE__ */ s("input", {
+					id: a,
 					type: "checkbox",
 					checked: e,
 					onChange: (e) => n(e.target.checked),
 					onBlur: r,
-					className: g.switchInput
-				}), /* @__PURE__ */ a("span", {
-					className: g.switchTrack,
-					children: /* @__PURE__ */ a("span", { className: g.switchThumb })
+					className: v.switchInput
+				}), /* @__PURE__ */ s("span", {
+					className: v.switchTrack,
+					children: /* @__PURE__ */ s("span", { className: v.switchThumb })
 				})]
 			});
 		}
-		case "textarea": return /* @__PURE__ */ a("textarea", {
-			id: c,
-			className: `${l} ${g.textarea}`,
+		case "textarea": return /* @__PURE__ */ s("textarea", {
+			id: a,
+			className: `${l} ${v.textarea}`,
 			value: t ?? "",
 			placeholder: e.placeholder,
 			onChange: (e) => n(e.target.value),
 			onBlur: r,
 			rows: 3
 		});
-		default: return /* @__PURE__ */ a("input", {
-			id: c,
+		default: return /* @__PURE__ */ s("input", {
+			id: a,
 			className: l,
 			type: "text",
 			value: t ?? "",
@@ -344,25 +344,25 @@ function _({ field: e, value: t, onChange: n, onBlur: r, hasError: s }) {
 }
 //#endregion
 //#region src/Form/Form.tsx
-function v({ fields: e, layout: i = "horizontal", initialValues: c, onSubmit: l, onReset: u, submitText: d = "提交", resetText: f = "重置", className: p, style: h }) {
-	let [v, y] = r(c ?? {}), [b, x] = r([]), [S, C] = r(/* @__PURE__ */ new Set()), w = n(() => {
+function b({ fields: e, layout: n = "horizontal", initialValues: i, onSubmit: o, onReset: u, submitText: d = "提交", resetText: f = "重置", className: p, style: m }) {
+	let [h, _] = a(i ?? {}), [b, x] = a([]), [S, C] = a(/* @__PURE__ */ new Set()), w = r(() => {
 		let e = /* @__PURE__ */ new Map();
 		for (let t of b) e.set(t.name, t.message);
 		return e;
 	}, [b]), T = t((t, n) => {
-		y((e) => ({
+		_((e) => ({
 			...e,
 			[t]: n
 		})), C((r) => (r.has(t) && x((r) => {
 			let i = e.find((e) => e.name === t);
 			if (!i) return r;
-			let a = r.filter((e) => e.name !== t), o = m(i, {
-				...v,
+			let a = r.filter((e) => e.name !== t), o = g(i, {
+				...h,
 				[t]: n
 			});
 			return o ? [...a, o] : a;
 		}), r));
-	}, [e, v]), E = t((t) => {
+	}, [e, h]), E = t((t) => {
 		C((e) => {
 			if (e.has(t)) return e;
 			let n = new Set(e);
@@ -370,95 +370,370 @@ function v({ fields: e, layout: i = "horizontal", initialValues: c, onSubmit: l,
 		});
 		let n = e.find((e) => e.name === t);
 		n && x((e) => {
-			let r = e.filter((e) => e.name !== t), i = m(n, v);
+			let r = e.filter((e) => e.name !== t), i = g(n, h);
 			return i ? [...r, i] : r;
 		});
-	}, [e, v]), D = t(async () => {
+	}, [e, h]), D = t(async () => {
 		let t = [];
 		for (let n of e) {
-			let e = m(n, v);
+			let e = g(n, h);
 			e && t.push(e);
 		}
 		for (let n of e) {
 			let e = n.rules?.find((e) => e.validator);
-			e?.validator && (await e.validator(v[n.name]) || t.push({
+			e?.validator && (await e.validator(h[n.name]) || t.push({
 				name: n.name,
 				message: e.message
 			}));
 		}
 		return x(t), C(new Set(e.map((e) => e.name))), t.length === 0;
-	}, [e, v]), O = t(async (e) => {
-		e.preventDefault(), await D() && l?.(v);
+	}, [e, h]), O = t(async (e) => {
+		e.preventDefault(), await D() && o?.(h);
 	}, [
 		D,
-		l,
-		v
+		o,
+		h
 	]), k = t(() => {
-		y(c ?? {}), x([]), C(/* @__PURE__ */ new Set()), u?.();
-	}, [c, u]);
-	return /* @__PURE__ */ o("form", {
-		className: s(g.form, g[i], p),
-		style: h,
+		_(i ?? {}), x([]), C(/* @__PURE__ */ new Set()), u?.();
+	}, [i, u]);
+	return /* @__PURE__ */ c("form", {
+		className: l(v.form, v[n], p),
+		style: m,
 		onSubmit: O,
 		onReset: k,
 		noValidate: !0,
-		children: [e.map((e) => /* @__PURE__ */ o("div", {
-			className: s(g.field, e.required && g.isRequired),
-			children: [/* @__PURE__ */ o("label", {
-				className: g.label,
+		children: [e.map((e) => /* @__PURE__ */ c("div", {
+			className: l(v.field, e.required && v.isRequired),
+			children: [/* @__PURE__ */ c("label", {
+				className: v.label,
 				htmlFor: e.name,
-				children: [e.label, e.required && /* @__PURE__ */ a("span", {
-					className: g.required,
+				children: [e.label, e.required && /* @__PURE__ */ s("span", {
+					className: v.required,
 					children: "*"
 				})]
-			}), /* @__PURE__ */ o("div", {
-				className: g.control,
-				children: [/* @__PURE__ */ a(_, {
+			}), /* @__PURE__ */ c("div", {
+				className: v.control,
+				children: [/* @__PURE__ */ s(y, {
 					field: e,
-					value: v[e.name],
+					value: h[e.name],
 					onChange: (t) => T(e.name, t),
 					onBlur: () => E(e.name),
 					hasError: S.has(e.name) && w.has(e.name)
-				}), S.has(e.name) && w.has(e.name) && /* @__PURE__ */ a("div", {
-					className: g.error,
+				}), S.has(e.name) && w.has(e.name) && /* @__PURE__ */ s("div", {
+					className: v.error,
 					children: w.get(e.name)
 				})]
 			})]
-		}, e.name)), /* @__PURE__ */ o("div", {
-			className: g.actions,
-			children: [/* @__PURE__ */ a("button", {
+		}, e.name)), /* @__PURE__ */ c("div", {
+			className: v.actions,
+			children: [/* @__PURE__ */ s("button", {
 				type: "submit",
-				className: g.submitBtn,
+				className: v.submitBtn,
 				children: d
-			}), /* @__PURE__ */ a("button", {
+			}), /* @__PURE__ */ s("button", {
 				type: "reset",
-				className: g.resetBtn,
+				className: v.resetBtn,
 				children: f
 			})]
 		})]
 	});
 }
+var x = {
+	message: "_message_mtqim_1",
+	user: "_user_mtqim_8",
+	assistant: "_assistant_mtqim_13",
+	avatar: "_avatar_mtqim_17",
+	bubble: "_bubble_mtqim_29",
+	role: "_role_mtqim_42",
+	content: "_content_mtqim_48",
+	cursor: "_cursor_mtqim_58",
+	blink: "_blink_mtqim_1",
+	errorMsg: "_errorMsg_mtqim_74"
+};
+//#endregion
+//#region src/ChatMessage/ChatMessage.tsx
+function S({ role: e, content: t, streaming: n = !1, error: r = !1, className: i }) {
+	return /* @__PURE__ */ c("div", {
+		className: l(x.message, e === "user" ? x.user : x.assistant, r && x.errorMsg, i),
+		children: [/* @__PURE__ */ s("div", {
+			className: x.avatar,
+			children: e === "user" ? "👤" : "🤖"
+		}), /* @__PURE__ */ c("div", {
+			className: x.bubble,
+			children: [/* @__PURE__ */ s("div", {
+				className: x.role,
+				children: e === "user" ? "你" : "AI"
+			}), /* @__PURE__ */ c("div", {
+				className: x.content,
+				children: [t || (n ? "" : "..."), n && /* @__PURE__ */ s("span", { className: x.cursor })]
+			})]
+		})]
+	});
+}
+var C = {
+	wrapper: "_wrapper_5qv60_1",
+	textarea: "_textarea_5qv60_10",
+	sendBtn: "_sendBtn_5qv60_40"
+};
+//#endregion
+//#region src/ChatInput/ChatInput.tsx
+function w({ onSend: e, disabled: n = !1, placeholder: r = "输入消息...", maxLength: o = 2e3, className: u }) {
+	let [d, f] = a(""), p = i(null), m = t(() => {
+		let t = d.trim();
+		!t || n || (e(t), f(""), p.current && (p.current.style.height = "auto"));
+	}, [
+		d,
+		n,
+		e
+	]), h = t((e) => {
+		e.key === "Enter" && !e.shiftKey && (e.preventDefault(), m());
+	}, [m]), g = t((e) => {
+		let t = e.target.value;
+		t.length <= o && f(t);
+		let n = e.target;
+		n.style.height = "auto", n.style.height = `${Math.min(n.scrollHeight, 120)}px`;
+	}, [o]);
+	return /* @__PURE__ */ c("div", {
+		className: l(C.wrapper, u),
+		children: [/* @__PURE__ */ s("textarea", {
+			ref: p,
+			className: C.textarea,
+			value: d,
+			onChange: g,
+			onKeyDown: h,
+			placeholder: r,
+			disabled: n,
+			rows: 1,
+			maxLength: o,
+			"aria-label": "输入消息"
+		}), /* @__PURE__ */ s("button", {
+			className: C.sendBtn,
+			onClick: m,
+			disabled: n || !d.trim(),
+			"aria-label": "发送",
+			children: "↑"
+		})]
+	});
+}
+//#endregion
+//#region src/hooks/useStreamChat.ts
+var T = (e) => {
+	if (!e.startsWith("data: ")) return null;
+	let t = e.slice(6);
+	if (t === "[DONE]") return null;
+	try {
+		return JSON.parse(t).choices?.[0]?.delta?.content || null;
+	} catch {
+		return null;
+	}
+}, E = (e) => ({
+	model: "deepseek-v4-flash",
+	messages: e.map((e) => ({
+		role: e.role,
+		content: e.content
+	})),
+	stream: !0
+});
+function D(e = {}) {
+	let { url: n = "https://api.deepseek.com/chat/completions", headers: r, parseChunk: o = T, buildBody: s = E, doneToken: c = "[DONE]", onError: l, fetch: u } = e, [d, f] = a([]), [p, m] = a(!1), [h, g] = a(null), _ = i(null);
+	return {
+		messages: d,
+		loading: p,
+		error: h,
+		send: t(async (e) => {
+			if (!e.trim() || p) return;
+			g(null), m(!0);
+			let t = {
+				id: `msg-${Date.now()}`,
+				role: "user",
+				content: e.trim(),
+				timestamp: Date.now()
+			}, i = `msg-${Date.now() + 1}`, a = {
+				id: i,
+				role: "assistant",
+				content: "",
+				timestamp: Date.now()
+			};
+			f((e) => [
+				...e,
+				t,
+				a
+			]);
+			let h = new AbortController();
+			_.current = h;
+			try {
+				let e = [...d, t], a = s(e), l;
+				if (l = u ? await u(e) : await fetch(n, {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+						...r
+					},
+					body: JSON.stringify(a),
+					signal: h.signal
+				}), !l.ok) {
+					let e = await l.text().catch(() => "Unknown error");
+					throw Error(`API ${l.status}: ${e}`);
+				}
+				let p = l.body?.getReader();
+				if (!p) throw Error("Response body is not readable");
+				let g = new TextDecoder(), _ = "", v = "";
+				for (;;) {
+					let { done: e, value: t } = await p.read();
+					if (e) break;
+					_ += g.decode(t, { stream: !0 });
+					let n = _.split("\n");
+					_ = n.pop() || "";
+					for (let e of n) {
+						let t = e.trim();
+						if (!t || t === `data: ${c}`) continue;
+						let n = o(t);
+						n && (v += n, f((e) => e.map((e) => e.id === i ? {
+							...e,
+							content: v
+						} : e)));
+					}
+				}
+				m(!1);
+			} catch (e) {
+				if (e instanceof DOMException && e.name === "AbortError") {
+					m(!1);
+					return;
+				}
+				let t = e instanceof Error ? e.message : "请求失败";
+				g(t), m(!1), l?.(e instanceof Error ? e : Error(t));
+			}
+		}, [
+			n,
+			r,
+			o,
+			s,
+			c,
+			l,
+			p,
+			d,
+			u
+		]),
+		abort: t(() => {
+			_.current?.abort(), _.current = null, m(!1);
+		}, []),
+		clear: t(() => {
+			f([]), g(null);
+		}, []),
+		removeMessage: t((e) => {
+			f((t) => t.filter((t) => t.id !== e));
+		}, [])
+	};
+}
+var O = {
+	chat: "_chat_12jn0_1",
+	header: "_header_12jn0_15",
+	title: "_title_12jn0_23",
+	clearBtn: "_clearBtn_12jn0_29",
+	list: "_list_12jn0_47",
+	empty: "_empty_12jn0_58",
+	emptyIcon: "_emptyIcon_12jn0_67",
+	emptyText: "_emptyText_12jn0_72",
+	errorBar: "_errorBar_12jn0_78",
+	inputArea: "_inputArea_12jn0_90",
+	stopBar: "_stopBar_12jn0_94",
+	stopBtn: "_stopBtn_12jn0_105"
+};
+//#endregion
+//#region src/Chat/Chat.tsx
+function k({ options: e, initialMessages: t, placeholder: r, className: a, style: o }) {
+	let { messages: u, loading: d, error: f, send: p, abort: m, clear: h } = D(e), g = i(null), _ = i(!1);
+	n(() => {
+		t && !_.current && (_.current = !0);
+	}, [t]), n(() => {
+		g.current && (g.current.scrollTop = g.current.scrollHeight);
+	}, [u]);
+	let v = t && !_.current ? t.map((e, t) => ({
+		id: `init-${t}`,
+		role: e.role,
+		content: e.content,
+		timestamp: Date.now() + t
+	})) : u;
+	return /* @__PURE__ */ c("div", {
+		className: l(O.chat, a),
+		style: o,
+		children: [
+			/* @__PURE__ */ c("div", {
+				className: O.header,
+				children: [/* @__PURE__ */ s("span", {
+					className: O.title,
+					children: "AI 对话"
+				}), v.length > 0 && /* @__PURE__ */ s("button", {
+					className: O.clearBtn,
+					onClick: h,
+					"aria-label": "清空对话",
+					children: "清空"
+				})]
+			}),
+			/* @__PURE__ */ c("div", {
+				ref: g,
+				className: O.list,
+				children: [v.length === 0 ? /* @__PURE__ */ c("div", {
+					className: O.empty,
+					children: [/* @__PURE__ */ s("div", {
+						className: O.emptyIcon,
+						children: "🤖"
+					}), /* @__PURE__ */ s("div", {
+						className: O.emptyText,
+						children: "输入消息开始对话"
+					})]
+				}) : v.map((e, t) => {
+					let n = t === v.length - 1 && e.role === "assistant";
+					return /* @__PURE__ */ s(S, {
+						role: e.role,
+						content: e.content,
+						streaming: n && d,
+						error: n && !!f
+					}, e.id);
+				}), f && /* @__PURE__ */ s("div", {
+					className: O.errorBar,
+					children: f
+				})]
+			}),
+			/* @__PURE__ */ c("div", {
+				className: O.inputArea,
+				children: [d && /* @__PURE__ */ c("div", {
+					className: O.stopBar,
+					children: [/* @__PURE__ */ s("span", { children: "AI 正在回复..." }), /* @__PURE__ */ s("button", {
+						className: O.stopBtn,
+						onClick: m,
+						children: "中止"
+					})]
+				}), /* @__PURE__ */ s(w, {
+					onSend: p,
+					disabled: d,
+					placeholder: r
+				})]
+			})
+		]
+	});
+}
 //#endregion
 //#region src/hooks/useControllable.ts
-function y(e, n, i) {
-	let [a, o] = r(n), s = e !== void 0;
-	return [s ? e : a, t((e) => {
-		s || o(e), i?.(e);
-	}, [s, i])];
+function A(e, n, r) {
+	let [i, o] = a(n), s = e !== void 0;
+	return [s ? e : i, t((e) => {
+		s || o(e), r?.(e);
+	}, [s, r])];
 }
 //#endregion
 //#region src/hooks/useMergeRefs.ts
-function b(...e) {
+function j(...e) {
 	return t((t) => {
 		for (let n of e) n && (typeof n == "function" ? n(t) : "current" in n && (n.current = t));
 	}, e);
 }
 //#endregion
 //#region src/utils/isPromise.ts
-function x(e) {
+function M(e) {
 	return typeof e == "object" && !!e && "then" in e && typeof e.then == "function";
 }
 //#endregion
-export { l as Button, v as Form, p as Table, s as cn, x as isPromise, y as useControllable, b as useMergeRefs };
+export { d as Button, k as Chat, w as ChatInput, S as ChatMessage, b as Form, h as Table, l as cn, M as isPromise, A as useControllable, j as useMergeRefs, D as useStreamChat };
 
 //# sourceMappingURL=index.js.map

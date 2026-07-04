@@ -61,7 +61,7 @@ export function useStreamChat(options: StreamChatOptions = {}) {
     buildBody = defaultBuildBody,
     doneToken = '[DONE]',
     onError,
-    customFetch,
+    fetch: customFetch,
   } = options
 
   const [messages, setMessages] = useState<ChatMessage[]>([])

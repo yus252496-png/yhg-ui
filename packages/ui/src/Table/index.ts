@@ -1,5 +1,4 @@
 import type { ReactNode } from 'react'
-import type { SortDirection } from './Table'
 
 export type { SortDirection } from './Table'
 

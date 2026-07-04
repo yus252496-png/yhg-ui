@@ -2,7 +2,7 @@ import { useCallback, useMemo, useState } from 'react'
 import { cn } from '../utils/cn.js'
 import { validateField } from './validator'
 import { FieldRenderer } from './FieldRenderer'
-import type { FormField, FormProps, FieldError } from './index'
+import type { FormProps, FieldError } from './index'
 import styles from './Form.module.css'
 
 /**

@@ -1,7 +1,7 @@
-import { useState, useMemo, useCallback } from 'react'
+import { useState, useMemo, useCallback, type ReactNode } from 'react'
 import { cn } from '../utils/cn.js'
 import { Pagination } from './Pagination'
-import type { Column, PaginationConfig, TableProps } from './index'
+import type { Column, TableProps } from './index'
 import styles from './Table.module.css'
 
 export type SortDirection = 'asc' | 'desc' | null
