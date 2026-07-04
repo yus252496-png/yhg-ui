@@ -1,8 +1,8 @@
 .message {
   display: flex;
-  gap: var(--kuka-spacing-md);
+  gap: var(--yhg-spacing-md);
   max-width: 80%;
-  font-family: var(--kuka-font-family-sans);
+  font-family: var(--yhg-font-family-sans);
 }
 
 .user {
@@ -27,10 +27,10 @@
 }
 
 .bubble {
-  padding: var(--kuka-spacing-sm) var(--kuka-spacing-md);
-  border-radius: var(--kuka-radius-md);
-  background: var(--kuka-bg-elevated);
-  border: 1px solid var(--kuka-border-color);
+  padding: var(--yhg-spacing-sm) var(--yhg-spacing-md);
+  border-radius: var(--yhg-radius-md);
+  background: var(--yhg-bg-elevated);
+  border: 1px solid var(--yhg-border-color);
   min-width: 60px;
 }
 
@@ -40,15 +40,15 @@
 }
 
 .role {
-  font-size: var(--kuka-font-size-xs);
-  color: var(--kuka-text-tertiary);
+  font-size: var(--yhg-font-size-xs);
+  color: var(--yhg-text-tertiary);
   margin-bottom: 2px;
 }
 
 .content {
-  font-size: var(--kuka-font-size-md);
-  color: var(--kuka-text-primary);
-  line-height: var(--kuka-line-height);
+  font-size: var(--yhg-font-size-md);
+  color: var(--yhg-text-primary);
+  line-height: var(--yhg-line-height);
   white-space: pre-wrap;
   word-break: break-word;
 }
@@ -59,7 +59,7 @@
   display: inline-block;
   width: 2px;
   height: 1em;
-  background: var(--kuka-color-primary);
+  background: var(--yhg-color-primary);
   margin-left: 2px;
   vertical-align: text-bottom;
   animation: blink 0.8s step-end infinite;
@@ -72,10 +72,10 @@
 /* ── 错误态 ── */
 
 .errorMsg .bubble {
-  border-color: var(--kuka-color-danger);
+  border-color: var(--yhg-color-danger);
   background: rgba(255, 71, 87, 0.08);
 }
 
 .errorMsg .content {
-  color: var(--kuka-color-danger);
+  color: var(--yhg-color-danger);
 }

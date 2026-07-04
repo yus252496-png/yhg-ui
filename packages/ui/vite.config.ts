@@ -17,7 +17,7 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
-      name: 'KukaFeUi',
+      name: 'YhgUi',
       formats: ['es', 'cjs'],
       fileName: (format) => format === 'es' ? 'index.js' : 'index.cjs',
     },

@@ -278,7 +278,7 @@ describe('Form — 自定义校验', () => {
         name: 'code',
         label: '编码',
         type: 'text',
-        rules: [{ validator: (v) => v === 'KUKA-001', message: '编码必须为 KUKA-001' }],
+        rules: [{ validator: (v) => v === 'YHG-001', message: '编码必须为 KUKA-001' }],
       },
     ]
     render(<Form fields={fields} />)

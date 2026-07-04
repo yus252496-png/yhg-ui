@@ -1,6 +1,6 @@
-# @kuka-fe/ui
+# yhg-ui
 
-库卡机器人工业级 UI 组件库。
+工业级 React 组件库。
 
 > 工业赛博风格 · 深色主题 · TypeScript First · Design Tokens 驱动
 
@@ -28,9 +28,9 @@ pnpm test
 ## 项目结构
 
 ```
-kuka-fe-ui/
+yhg-ui/
 ├── packages/
-│   └── ui/                    # 组件库主体 @kuka-fe/ui
+│   └── ui/                    # 组件库主体 @yhg/ui
 │       ├── src/
 │       │   ├── index.ts           # 统一导出入口
 │       │   ├── tokens/            # Design Tokens（CSS 变量）
@@ -88,8 +88,8 @@ kuka-fe-ui/
 ### 在项目内引用
 
 ```tsx
-import { Button, Table } from '@kuka-fe/ui'
-import '@kuka-fe/ui/dist/ui.css'
+import { Button, Table } from '@yhg/ui'
+import '@yhg/ui/dist/ui.css'
 
 function Page() {
   return (
@@ -111,7 +111,7 @@ function Page() {
 ### 从 Git 安装（当前方式）
 
 ```bash
-npm install git+https://github.com/yus252496-png/kuka-fe-ui.git#main
+npm install git+https://github.com/yus252496-png/yhg-ui.git#main
 ```
 
 ### 构建产物
@@ -134,7 +134,7 @@ dist/
 3. **封装状态** → 内部状态不暴露
 4. **复用潜力排序** → 先抽通用组件
 
-所有颜色、字号、间距通过 CSS 变量（`var(--kuka-*)`）引用，支持一键换肤。
+所有颜色、字号、间距通过 CSS 变量（`var(--yhg-*)`）引用，支持一键换肤。
 
 ---
 

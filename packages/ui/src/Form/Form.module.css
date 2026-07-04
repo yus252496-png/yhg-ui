@@ -3,9 +3,9 @@
    ═══════════════════════════════════════════════════════ */
 
 .form {
-  font-family: var(--kuka-font-family-sans);
-  font-size: var(--kuka-font-size-md);
-  color: var(--kuka-text-primary);
+  font-family: var(--yhg-font-family-sans);
+  font-size: var(--yhg-font-size-md);
+  color: var(--yhg-text-primary);
 }
 
 /* ── 布局：horizontal（默认） ── */
@@ -13,8 +13,8 @@
 .horizontal .field {
   display: flex;
   align-items: flex-start;
-  gap: var(--kuka-spacing-md);
-  margin-bottom: var(--kuka-spacing-lg);
+  gap: var(--yhg-spacing-md);
+  margin-bottom: var(--yhg-spacing-lg);
 }
 
 .horizontal .label {
@@ -31,12 +31,12 @@
 /* ── 布局：vertical ── */
 
 .vertical .field {
-  margin-bottom: var(--kuka-spacing-lg);
+  margin-bottom: var(--yhg-spacing-lg);
 }
 
 .vertical .label {
   display: block;
-  margin-bottom: var(--kuka-spacing-xs);
+  margin-bottom: var(--yhg-spacing-xs);
 }
 
 .vertical .control {
@@ -48,14 +48,14 @@
 .inline {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--kuka-spacing-md);
+  gap: var(--yhg-spacing-md);
   align-items: flex-end;
 }
 
 .inline .field {
   display: flex;
   align-items: center;
-  gap: var(--kuka-spacing-sm);
+  gap: var(--yhg-spacing-sm);
 }
 
 .inline .label {
@@ -70,13 +70,13 @@
 /* ── 标签 ── */
 
 .label {
-  font-size: var(--kuka-font-size-sm);
-  color: var(--kuka-text-secondary);
-  font-weight: var(--kuka-font-weight-medium);
+  font-size: var(--yhg-font-size-sm);
+  color: var(--yhg-text-secondary);
+  font-weight: var(--yhg-font-weight-medium);
 }
 
 .required {
-  color: var(--kuka-color-danger);
+  color: var(--yhg-color-danger);
   margin-left: 2px;
 }
 
@@ -85,35 +85,35 @@
 .input {
   width: 100%;
   height: 34px;
-  padding: 0 var(--kuka-spacing-md);
-  background: var(--kuka-bg-input);
-  border: 1px solid var(--kuka-border-color);
-  border-radius: var(--kuka-radius-md);
-  color: var(--kuka-text-primary);
-  font-family: var(--kuka-font-family-sans);
-  font-size: var(--kuka-font-size-md);
+  padding: 0 var(--yhg-spacing-md);
+  background: var(--yhg-bg-input);
+  border: 1px solid var(--yhg-border-color);
+  border-radius: var(--yhg-radius-md);
+  color: var(--yhg-text-primary);
+  font-family: var(--yhg-font-family-sans);
+  font-size: var(--yhg-font-size-md);
   outline: none;
   transition:
-    border-color var(--kuka-transition),
-    box-shadow var(--kuka-transition);
+    border-color var(--yhg-transition),
+    box-shadow var(--yhg-transition);
   box-sizing: border-box;
 }
 
 .input::placeholder {
-  color: var(--kuka-text-disabled);
+  color: var(--yhg-text-disabled);
 }
 
 .input:focus {
-  border-color: var(--kuka-color-primary);
+  border-color: var(--yhg-color-primary);
   box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.15);
 }
 
 .inputError {
-  border-color: var(--kuka-color-danger);
+  border-color: var(--yhg-color-danger);
 }
 
 .inputError:focus {
-  border-color: var(--kuka-color-danger);
+  border-color: var(--yhg-color-danger);
   box-shadow: 0 0 0 2px rgba(255, 71, 87, 0.15);
 }
 
@@ -143,7 +143,7 @@ select.input {
 
 .textarea {
   height: auto;
-  padding: var(--kuka-spacing-sm) var(--kuka-spacing-md);
+  padding: var(--yhg-spacing-sm) var(--yhg-spacing-md);
   resize: vertical;
   min-height: 60px;
 }
@@ -169,11 +169,11 @@ select.input {
   height: 22px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: 11px;
-  transition: background var(--kuka-transition);
+  transition: background var(--yhg-transition);
 }
 
 .switchInput:checked + .switchTrack {
-  background: var(--kuka-color-primary);
+  background: var(--yhg-color-primary);
 }
 
 .switchThumb {
@@ -184,7 +184,7 @@ select.input {
   height: 16px;
   background: #fff;
   border-radius: 50%;
-  transition: transform var(--kuka-transition);
+  transition: transform var(--yhg-transition);
 }
 
 .switchInput:checked + .switchTrack .switchThumb {
@@ -195,8 +195,8 @@ select.input {
 
 .error {
   margin-top: 4px;
-  font-size: var(--kuka-font-size-xs);
-  color: var(--kuka-color-danger);
+  font-size: var(--yhg-font-size-xs);
+  color: var(--yhg-color-danger);
   line-height: 1.4;
 }
 
@@ -204,8 +204,8 @@ select.input {
 
 .actions {
   display: flex;
-  gap: var(--kuka-spacing-sm);
-  margin-top: var(--kuka-spacing-xl);
+  gap: var(--yhg-spacing-sm);
+  margin-top: var(--yhg-spacing-xl);
 }
 
 .inline .actions {
@@ -216,29 +216,29 @@ select.input {
 .submitBtn,
 .resetBtn {
   height: 34px;
-  padding: 0 var(--kuka-spacing-xl);
+  padding: 0 var(--yhg-spacing-xl);
   border: none;
-  border-radius: var(--kuka-radius-md);
-  font-family: var(--kuka-font-family-sans);
-  font-size: var(--kuka-font-size-md);
+  border-radius: var(--yhg-radius-md);
+  font-family: var(--yhg-font-family-sans);
+  font-size: var(--yhg-font-size-md);
   cursor: pointer;
-  transition: all var(--kuka-transition);
+  transition: all var(--yhg-transition);
 }
 
 .submitBtn {
-  background: var(--kuka-color-primary);
+  background: var(--yhg-color-primary);
   color: #000;
-  font-weight: var(--kuka-font-weight-medium);
+  font-weight: var(--yhg-font-weight-medium);
 }
 
 .submitBtn:hover {
-  background: var(--kuka-color-primary-hover);
+  background: var(--yhg-color-primary-hover);
 }
 
 .resetBtn {
   background: transparent;
-  color: var(--kuka-text-secondary);
-  border: 1px solid var(--kuka-border-color);
+  color: var(--yhg-text-secondary);
+  border: 1px solid var(--yhg-border-color);
 }
 
 .resetBtn:hover {

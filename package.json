@@ -1,9 +1,9 @@
 {
-  "name": "kuka-fe-ui",
+  "name": "yhg-ui",
   "private": true,
   "packageManager": "pnpm@10.34.4",
   "version": "0.1.2",
-  "description": "库卡工业级 React 组件库（Button/Table/Form/Chat）",
+  "description": "工业级 React 组件库（Button/Table/Form/Chat）",
   "main": "./packages/ui/dist/index.cjs",
   "module": "./packages/ui/dist/index.js",
   "types": "./packages/ui/dist/index.d.ts",
@@ -19,10 +19,10 @@
     "packages/ui/dist/"
   ],
   "scripts": {
-    "build": "pnpm --filter @kuka-fe/ui build",
-    "test": "pnpm --filter @kuka-fe/ui test",
-    "storybook": "pnpm --filter @kuka-fe/storybook storybook",
-    "build:storybook": "pnpm --filter @kuka-fe/storybook build",
-    "dev": "pnpm --filter @kuka-fe/ui dev"
+    "build": "pnpm --filter @yhg/ui build",
+    "test": "pnpm --filter @yhg/ui test",
+    "storybook": "pnpm --filter @yhg/storybook storybook",
+    "build:storybook": "pnpm --filter @yhg/storybook build",
+    "dev": "pnpm --filter @yhg/ui dev"
   }
 }

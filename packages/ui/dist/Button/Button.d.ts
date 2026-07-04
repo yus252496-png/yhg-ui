@@ -23,7 +23,7 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
  * 工业级 Button 组件
  *
  * 支持 5 种 variant、3 种 size、loading、icon 前置、block 撑满。
- * 所有颜色引用 CSS 变量（`var(--kuka-*)`），受主题系统驱动。
+ * 所有颜色引用 CSS 变量（`var(--yhg-*)`），受主题系统驱动。
  */
 export declare const Button: import('react').ForwardRefExoticComponent<ButtonProps & import('react').RefAttributes<HTMLButtonElement>>;
 //# sourceMappingURL=Button.d.ts.map

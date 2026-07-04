@@ -1,5 +1,5 @@
 {
-  "name": "@kuka-fe/storybook",
+  "name": "@yhg/storybook",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -8,7 +8,7 @@
     "build": "storybook build"
   },
   "dependencies": {
-    "@kuka-fe/ui": "workspace:*"
+    "@yhg/ui": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^8",

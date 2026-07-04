@@ -3,11 +3,11 @@
   flex-direction: column;
   height: 100%;
   min-height: 400px;
-  border: 1px solid var(--kuka-border-color);
-  border-radius: var(--kuka-radius-lg);
-  background: var(--kuka-bg-elevated);
+  border: 1px solid var(--yhg-border-color);
+  border-radius: var(--yhg-radius-lg);
+  background: var(--yhg-bg-elevated);
   overflow: hidden;
-  font-family: var(--kuka-font-family-sans);
+  font-family: var(--yhg-font-family-sans);
 }
 
 /* ── 头部 ── */
@@ -16,30 +16,30 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--kuka-spacing-md) var(--kuka-spacing-lg);
-  border-bottom: 1px solid var(--kuka-border-color-light);
+  padding: var(--yhg-spacing-md) var(--yhg-spacing-lg);
+  border-bottom: 1px solid var(--yhg-border-color-light);
 }
 
 .title {
-  font-size: var(--kuka-font-size-md);
-  font-weight: var(--kuka-font-weight-medium);
-  color: var(--kuka-text-primary);
+  font-size: var(--yhg-font-size-md);
+  font-weight: var(--yhg-font-weight-medium);
+  color: var(--yhg-text-primary);
 }
 
 .clearBtn {
-  font-size: var(--kuka-font-size-xs);
-  color: var(--kuka-text-tertiary);
+  font-size: var(--yhg-font-size-xs);
+  color: var(--yhg-text-tertiary);
   background: none;
-  border: 1px solid var(--kuka-border-color);
-  border-radius: var(--kuka-radius-sm);
-  padding: 2px var(--kuka-spacing-sm);
+  border: 1px solid var(--yhg-border-color);
+  border-radius: var(--yhg-radius-sm);
+  padding: 2px var(--yhg-spacing-sm);
   cursor: pointer;
-  transition: all var(--kuka-transition);
+  transition: all var(--yhg-transition);
 }
 
 .clearBtn:hover {
-  color: var(--kuka-text-secondary);
-  border-color: var(--kuka-text-tertiary);
+  color: var(--yhg-text-secondary);
+  border-color: var(--yhg-text-tertiary);
 }
 
 /* ── 消息列表 ── */
@@ -47,10 +47,10 @@
 .list {
   flex: 1;
   overflow-y: auto;
-  padding: var(--kuka-spacing-lg);
+  padding: var(--yhg-spacing-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--kuka-spacing-md);
+  gap: var(--yhg-spacing-md);
 }
 
 /* ── 空状态 ── */
@@ -61,56 +61,56 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--kuka-text-tertiary);
+  color: var(--yhg-text-tertiary);
 }
 
 .emptyIcon {
   font-size: 48px;
-  margin-bottom: var(--kuka-spacing-md);
+  margin-bottom: var(--yhg-spacing-md);
 }
 
 .emptyText {
-  font-size: var(--kuka-font-size-sm);
+  font-size: var(--yhg-font-size-sm);
 }
 
 /* ── 错误条 ── */
 
 .errorBar {
-  padding: var(--kuka-spacing-sm) var(--kuka-spacing-md);
+  padding: var(--yhg-spacing-sm) var(--yhg-spacing-md);
   background: rgba(255, 71, 87, 0.1);
   border: 1px solid rgba(255, 71, 87, 0.3);
-  border-radius: var(--kuka-radius-sm);
-  color: var(--kuka-color-danger);
-  font-size: var(--kuka-font-size-sm);
+  border-radius: var(--yhg-radius-sm);
+  color: var(--yhg-color-danger);
+  font-size: var(--yhg-font-size-sm);
   text-align: center;
 }
 
 /* ── 输入区 ── */
 
 .inputArea {
-  border-top: 1px solid var(--kuka-border-color-lighter);
+  border-top: 1px solid var(--yhg-border-color-lighter);
 }
 
 .stopBar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--kuka-spacing-sm);
-  padding: var(--kuka-spacing-xs);
+  gap: var(--yhg-spacing-sm);
+  padding: var(--yhg-spacing-xs);
   background: rgba(0, 212, 255, 0.06);
-  font-size: var(--kuka-font-size-xs);
-  color: var(--kuka-text-secondary);
+  font-size: var(--yhg-font-size-xs);
+  color: var(--yhg-text-secondary);
 }
 
 .stopBtn {
-  font-size: var(--kuka-font-size-xs);
-  color: var(--kuka-color-danger);
+  font-size: var(--yhg-font-size-xs);
+  color: var(--yhg-color-danger);
   background: none;
-  border: 1px solid var(--kuka-color-danger);
-  border-radius: var(--kuka-radius-sm);
-  padding: 1px var(--kuka-spacing-sm);
+  border: 1px solid var(--yhg-color-danger);
+  border-radius: var(--yhg-radius-sm);
+  padding: 1px var(--yhg-spacing-sm);
   cursor: pointer;
-  transition: all var(--kuka-transition);
+  transition: all var(--yhg-transition);
 }
 
 .stopBtn:hover {

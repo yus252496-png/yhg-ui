@@ -1,17 +1,17 @@
 /* ═══════════════════════════════════════════════════════
-   @kuka-fe/ui Design Tokens — 字体
+   @yhg/ui Design Tokens — 字体
    ═══════════════════════════════════════════════════════ */
 
 :root {
-  --kuka-font-family:          'Courier New', 'SF Mono', 'Consolas', monospace;
-  --kuka-font-family-sans:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --kuka-font-size-xs:         10px;
-  --kuka-font-size-sm:         11px;
-  --kuka-font-size-md:         13px;
-  --kuka-font-size-lg:         16px;
-  --kuka-font-size-xl:         20px;
-  --kuka-font-weight-normal:   400;
-  --kuka-font-weight-medium:   600;
-  --kuka-font-weight-bold:     700;
-  --kuka-line-height:          1.6;
+  --yhg-font-family:          'Courier New', 'SF Mono', 'Consolas', monospace;
+  --yhg-font-family-sans:     'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --yhg-font-size-xs:         10px;
+  --yhg-font-size-sm:         11px;
+  --yhg-font-size-md:         13px;
+  --yhg-font-size-lg:         16px;
+  --yhg-font-size-xl:         20px;
+  --yhg-font-weight-normal:   400;
+  --yhg-font-weight-medium:   600;
+  --yhg-font-weight-bold:     700;
+  --yhg-line-height:          1.6;
 }

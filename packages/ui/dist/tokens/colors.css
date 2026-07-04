@@ -1,43 +1,43 @@
 /* ═══════════════════════════════════════════════════════
-   @kuka-fe/ui Design Tokens — 色板
+   @yhg/ui Design Tokens — 色板
    工业赛博风格 · 深色主题
    ═══════════════════════════════════════════════════════ */
 
 :root {
   /* ── 品牌主色 ── */
-  --kuka-color-primary:        #00d4ff;
-  --kuka-color-primary-hover:  #33ddff;
-  --kuka-color-primary-active: #00a8cc;
+  --yhg-color-primary:        #00d4ff;
+  --yhg-color-primary-hover:  #33ddff;
+  --yhg-color-primary-active: #00a8cc;
 
   /* ── 语义色 ── */
-  --kuka-color-success:        #00ff88;
-  --kuka-color-success-hover:  #33ffa3;
-  --kuka-color-warning:        #ffb300;
-  --kuka-color-warning-hover:  #ffc233;
-  --kuka-color-danger:         #ff4757;
-  --kuka-color-danger-hover:   #ff6b78;
-  --kuka-color-info:           #7c5cfc;
+  --yhg-color-success:        #00ff88;
+  --yhg-color-success-hover:  #33ffa3;
+  --yhg-color-warning:        #ffb300;
+  --yhg-color-warning-hover:  #ffc233;
+  --yhg-color-danger:         #ff4757;
+  --yhg-color-danger-hover:   #ff6b78;
+  --yhg-color-info:           #7c5cfc;
 
   /* ── 文字色（深色主题） ── */
-  --kuka-text-primary:         #e8e8f0;
-  --kuka-text-secondary:       #aab;
-  --kuka-text-tertiary:        #667;
-  --kuka-text-disabled:        #445;
+  --yhg-text-primary:         #e8e8f0;
+  --yhg-text-secondary:       #aab;
+  --yhg-text-tertiary:        #667;
+  --yhg-text-disabled:        #445;
 
   /* ── 背景色 ── */
-  --kuka-bg-base:              #0d1117;
-  --kuka-bg-elevated:          #14182d;
-  --kuka-bg-overlay:           rgba(10, 10, 30, 0.75);
-  --kuka-bg-input:             rgba(255, 255, 255, 0.06);
+  --yhg-bg-base:              #0d1117;
+  --yhg-bg-elevated:          #14182d;
+  --yhg-bg-overlay:           rgba(10, 10, 30, 0.75);
+  --yhg-bg-input:             rgba(255, 255, 255, 0.06);
 
   /* ── 边框 ── */
-  --kuka-border-color:         rgba(100, 100, 200, 0.2);
-  --kuka-border-color-light:   rgba(100, 100, 200, 0.15);
-  --kuka-border-color-lighter: rgba(255, 255, 255, 0.06);
+  --yhg-border-color:         rgba(100, 100, 200, 0.2);
+  --yhg-border-color-light:   rgba(100, 100, 200, 0.15);
+  --yhg-border-color-lighter: rgba(255, 255, 255, 0.06);
 
   /* ── 设备状态色 ── */
-  --kuka-status-running:       #00ff88;
-  --kuka-status-standby:       #ffb300;
-  --kuka-status-error:         #ff4757;
-  --kuka-status-offline:       #666;
+  --yhg-status-running:       #00ff88;
+  --yhg-status-standby:       #ffb300;
+  --yhg-status-error:         #ff4757;
+  --yhg-status-offline:       #666;
 }

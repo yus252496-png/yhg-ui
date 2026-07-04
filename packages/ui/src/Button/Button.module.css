@@ -9,20 +9,20 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--kuka-spacing-sm);
+  gap: var(--yhg-spacing-sm);
   border: 1px solid transparent;
-  border-radius: var(--kuka-radius-md);
-  font-family: var(--kuka-font-family-sans);
-  font-weight: var(--kuka-font-weight-medium);
+  border-radius: var(--yhg-radius-md);
+  font-family: var(--yhg-font-family-sans);
+  font-weight: var(--yhg-font-weight-medium);
   line-height: 1;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
   transition:
-    background var(--kuka-transition),
-    border-color var(--kuka-transition),
-    opacity var(--kuka-transition),
-    box-shadow var(--kuka-transition);
+    background var(--yhg-transition),
+    border-color var(--yhg-transition),
+    opacity var(--yhg-transition),
+    box-shadow var(--yhg-transition);
 
   /* 重置默认 button 样式 */
   outline: none;
@@ -50,45 +50,45 @@
 
 .sm {
   height: 28px;
-  padding: 0 var(--kuka-spacing-md);
-  font-size: var(--kuka-font-size-sm);
-  border-radius: var(--kuka-radius-sm);
+  padding: 0 var(--yhg-spacing-md);
+  font-size: var(--yhg-font-size-sm);
+  border-radius: var(--yhg-radius-sm);
 }
 
 .md {
   height: 34px;
-  padding: 0 var(--kuka-spacing-lg);
-  font-size: var(--kuka-font-size-md);
+  padding: 0 var(--yhg-spacing-lg);
+  font-size: var(--yhg-font-size-md);
 }
 
 .lg {
   height: 42px;
-  padding: 0 var(--kuka-spacing-xl);
+  padding: 0 var(--yhg-spacing-xl);
   font-size: 15px;
 }
 
 /* ── variant: primary ── */
 
 .primary {
-  background: var(--kuka-color-primary);
+  background: var(--yhg-color-primary);
   color: #000;
   border-color: transparent;
 }
 
 .primary:hover {
-  background: var(--kuka-color-primary-hover);
+  background: var(--yhg-color-primary-hover);
 }
 
 .primary:active {
-  background: var(--kuka-color-primary-active);
+  background: var(--yhg-color-primary-active);
 }
 
 /* ── variant: secondary ── */
 
 .secondary {
   background: transparent;
-  color: var(--kuka-text-primary);
-  border-color: var(--kuka-border-color);
+  color: var(--yhg-text-primary);
+  border-color: var(--yhg-border-color);
 }
 
 .secondary:hover {
@@ -103,8 +103,8 @@
 
 .outline {
   background: transparent;
-  color: var(--kuka-color-primary);
-  border-color: var(--kuka-color-primary);
+  color: var(--yhg-color-primary);
+  border-color: var(--yhg-color-primary);
 }
 
 .outline:hover {
@@ -119,25 +119,25 @@
 
 .ghost {
   background: transparent;
-  color: var(--kuka-text-secondary);
+  color: var(--yhg-text-secondary);
   border-color: transparent;
 }
 
 .ghost:hover {
   background: rgba(255, 255, 255, 0.04);
-  color: var(--kuka-text-primary);
+  color: var(--yhg-text-primary);
 }
 
 /* ── variant: danger ── */
 
 .danger {
-  background: var(--kuka-color-danger);
+  background: var(--yhg-color-danger);
   color: #fff;
   border-color: transparent;
 }
 
 .danger:hover {
-  background: var(--kuka-color-danger-hover);
+  background: var(--yhg-color-danger-hover);
 }
 
 .danger:active {
